@@ -30,6 +30,12 @@ public class Recipe {
     @Column
     private String sourceUrl;
 
+    /**
+     * A Recipe can have many Ingredients and an Ingredient can be associated w multiple Recipes:
+     * @ManyToMany used to establish relationship between Recipe and Ingredient
+     * @JoinTable specifies name of join table used with the foreign key mappings
+     * List ingredients attribute will create a collection of ingredients associate with a recipe
+     */
     @ManyToMany
     @JoinTable(
             name = "recipe_ingredient",
