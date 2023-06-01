@@ -1,11 +1,16 @@
 package com.plateplanner.api.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "recipe_ingredient")
 public class RecipeIngredient {
 
+    /**
+     * Combine @Id annotation with @ManyToOne and @JoinColumn to manage the
+     * foreign key mappings for Recipe and Ingredient entities
+     */
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "recipe_id")
@@ -17,12 +22,12 @@ public class RecipeIngredient {
     private Ingredient ingredient;
 
     @Column
-    private Integer quantity;
+    private BigDecimal quantity;
 
     public RecipeIngredient() {
     }
 
-    public RecipeIngredient(Recipe recipe, Ingredient ingredient, Integer quantity) {
+    public RecipeIngredient(Recipe recipe, Ingredient ingredient, BigDecimal quantity) {
         this.recipe = recipe;
         this.ingredient = ingredient;
         this.quantity = quantity;
@@ -44,11 +49,11 @@ public class RecipeIngredient {
         this.ingredient = ingredient;
     }
 
-    public Integer getQuantity() {
+    public BigDecimal getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
 
