@@ -1,6 +1,7 @@
 package com.plateplanner.api.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "recipes")
@@ -28,6 +29,14 @@ public class Recipe {
 
     @Column
     private String sourceUrl;
+
+    @ManyToMany
+    @JoinTable(
+            name = "recipe_ingredient",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id")
+    )
+    private List<Ingredient> ingredients;
 
     public Recipe() {
     }
