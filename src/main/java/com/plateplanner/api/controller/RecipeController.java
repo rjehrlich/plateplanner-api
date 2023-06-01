@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/recipe")
+@RequestMapping(path = "/api")
 public class RecipeController {
 
     private RecipeRepo recipeRepo;
@@ -20,7 +20,7 @@ public class RecipeController {
         this.recipeRepo = recipeRepo;
     }
 
-    @GetMapping(path = "/all")
+    @GetMapping(path = "/recipes")
     public List<Recipe> getRecipes() {
         return recipeRepo.findAll();
     }
