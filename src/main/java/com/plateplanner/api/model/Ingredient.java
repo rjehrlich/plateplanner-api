@@ -1,7 +1,17 @@
 package com.plateplanner.api.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ingredients")
 public class Ingredient {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
+
+    @Column
     private String name;
 
     public Ingredient() {
