@@ -20,6 +20,10 @@ public class RecipeController {
         this.recipeRepo = recipeRepo;
     }
 
+    /**
+     * getRecipes method provides a recipes Endpoint that will:
+     * @return a list of all recipes
+     */
     @GetMapping(path = "/recipes")
     public List<Recipe> getRecipes() {
         return recipeRepo.findAll();
