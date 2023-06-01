@@ -1,23 +1,44 @@
 package com.plateplanner.api.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "recipes")
 public class Recipe {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private String title;
+
+    @Column
     private String description;
+
+    @Column
     private Integer prepTime;
+
+    @Column
     private Integer cookTime;
+
+    @Column
     private String instructions;
+
+    @Column
+    private String sourceUrl;
 
     public Recipe() {
     }
 
-    public Recipe(Long id, String title, String description, Integer prepTime, Integer cookTime, String instructions) {
+    public Recipe(Long id, String title, String description, Integer prepTime, Integer cookTime, String instructions, String sourceUrl) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.prepTime = prepTime;
         this.cookTime = cookTime;
         this.instructions = instructions;
+        this.sourceUrl = sourceUrl;
     }
 
     public Long getId() {
@@ -68,6 +89,14 @@ public class Recipe {
         this.instructions = instructions;
     }
 
+    public String getSourceUrl() {
+        return sourceUrl;
+    }
+
+    public void setSourceUrl(String sourceUrl) {
+        this.sourceUrl = sourceUrl;
+    }
+
     @Override
     public String toString() {
         return "Recipe{" +
@@ -77,6 +106,7 @@ public class Recipe {
                 ", prepTime=" + prepTime +
                 ", cookTime=" + cookTime +
                 ", instructions='" + instructions + '\'' +
+                ", sourceUrl='" + sourceUrl + '\'' +
                 '}';
     }
 }
