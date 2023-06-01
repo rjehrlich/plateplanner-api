@@ -30,6 +30,7 @@ public class Recipe {
     @Column
     private String sourceUrl;
 
+
     /**
      * A Recipe can have many Ingredients and an Ingredient can be associated w multiple Recipes:
      * @ManyToMany used to establish relationship between Recipe and Ingredient
@@ -44,6 +45,7 @@ public class Recipe {
     )
     private List<Ingredient> ingredients;
 
+
     public Recipe() {
     }
 
@@ -55,6 +57,14 @@ public class Recipe {
         this.cookTime = cookTime;
         this.instructions = instructions;
         this.sourceUrl = sourceUrl;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public Long getId() {
