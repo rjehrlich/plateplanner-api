@@ -1,11 +1,12 @@
 package com.plateplanner.api.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "recipe_ingredient")
-public class RecipeIngredient {
+public class RecipeIngredient implements Serializable {
 
     /**
      * Combine @Id annotation with @ManyToOne and @JoinColumn to manage the
@@ -14,12 +15,12 @@ public class RecipeIngredient {
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "recipe_id")
-    private Recipe recipe;
+    public Recipe recipe;
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ingredient_id")
-    private Ingredient ingredient;
+    public Ingredient ingredient;
 
     @Column
     private BigDecimal quantity;
@@ -64,5 +65,23 @@ public class RecipeIngredient {
                 ", ingredient=" + ingredient +
                 ", quantity=" + quantity +
                 '}';
+    }
+
+    /**
+     * hashCode method overrides the default method in the superclass
+     * if the recipe attribute is not null, use hashCode method to calculate the hashCode, else result is 0
+     * then, combine the hash code of recipe with the hash code of ingredient using 31 as a prime number
+     * @return an integer representing hash code of this object
+     */
+    @Override
+    public int hashCode() {
+        int result = recipe != null ? recipe.hashCode() : 0;
+        result = 31 * result + (ingredient != null ? ingredient.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }
