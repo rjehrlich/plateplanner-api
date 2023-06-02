@@ -3,6 +3,9 @@ package com.plateplanner.api.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * RecipeIngredientId defines the composite keys for RecipeIngredient entity
+ */
 public class RecipeIngredientId implements Serializable {
     private Long recipe;
     private Long ingredient;
