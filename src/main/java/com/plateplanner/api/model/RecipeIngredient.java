@@ -7,6 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "recipe_ingredient")
+@IdClass(RecipeIngredientId.class)
 public class RecipeIngredient implements Serializable {
 
     /**
