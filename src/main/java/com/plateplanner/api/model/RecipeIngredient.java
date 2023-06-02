@@ -25,12 +25,12 @@ public class RecipeIngredient implements Serializable {
     public Ingredient ingredient;
 
     @Column
-    private BigDecimal quantity;
+    private String quantity;
 
     public RecipeIngredient() {
     }
 
-    public RecipeIngredient(Recipe recipe, Ingredient ingredient, BigDecimal quantity) {
+    public RecipeIngredient(Recipe recipe, Ingredient ingredient, String quantity) {
         this.recipe = recipe;
         this.ingredient = ingredient;
         this.quantity = quantity;
@@ -52,11 +52,11 @@ public class RecipeIngredient implements Serializable {
         this.ingredient = ingredient;
     }
 
-    public BigDecimal getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(BigDecimal quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 

@@ -19,10 +19,10 @@ public class Recipe {
     private String description;
 
     @Column
-    private Integer prepTime;
+    private String prepTime;
 
     @Column
-    private Integer cookTime;
+    private String cookTime;
 
     @Column
     private String instructions;
@@ -49,7 +49,7 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(Long id, String title, String description, Integer prepTime, Integer cookTime, String instructions, String sourceUrl) {
+    public Recipe(Long id, String title, String description, String prepTime, String cookTime, String instructions, String sourceUrl) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -91,19 +91,19 @@ public class Recipe {
         this.description = description;
     }
 
-    public Integer getPrepTime() {
+    public String getPrepTime() {
         return prepTime;
     }
 
-    public void setPrepTime(Integer prepTime) {
+    public void setPrepTime(String prepTime) {
         this.prepTime = prepTime;
     }
 
-    public Integer getCookTime() {
+    public String getCookTime() {
         return cookTime;
     }
 
-    public void setCookTime(Integer cookTime) {
+    public void setCookTime(String cookTime) {
         this.cookTime = cookTime;
     }
 
