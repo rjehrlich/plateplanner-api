@@ -40,17 +40,6 @@ public class SpringBootCucumberTestDefinitions {
     @Autowired
     private RecipeRepo recipeRepo;
 
-    @Before
-    public void setUpTestData() {
-        // Populate test data before each scenario
-        Recipe recipe1 = new Recipe();
-        // Set properties for recipe1
-        recipeRepo.save(recipe1);
-
-        Recipe recipe2 = new Recipe();
-        // Set properties for recipe2
-        recipeRepo.save(recipe2);
-    }
 
     @Given("A list of recipes are available")
     public void aListOfRecipesAreAvailable() {
