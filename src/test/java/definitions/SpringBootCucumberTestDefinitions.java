@@ -71,4 +71,17 @@ public class SpringBootCucumberTestDefinitions {
         Assert.assertNotNull(response.getBody());
     }
 
+    @Given("A list of ingredients are available")
+    public void aListOfIngredientsAreAvailable() {
+        
+    }
+
+    @When("I search for an ingredient by id")
+    public void iSearchForAnIngredientById() {
+        
+    }
+
+    @Then("the ingredient is displayed")
+    public void theIngredientIsDisplayed() {
+    }
 }
