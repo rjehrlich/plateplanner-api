@@ -97,5 +97,7 @@ public class SpringBootCucumberTestDefinitions {
 
     @Then("the ingredient is displayed")
     public void theIngredientIsDisplayed() {
+        Assert.assertEquals(200, response.getStatusCode());
+        Assert.assertNotNull(response.getBody());
     }
 }

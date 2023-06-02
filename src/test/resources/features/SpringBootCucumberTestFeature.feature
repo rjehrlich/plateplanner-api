@@ -10,4 +10,4 @@ Feature: Rest API Functionalities
   Scenario: User able to view, create and update Ingredients
     Given A list of ingredients are available
     When I search for an ingredient by id
-#    Then the ingredient is displayed
+    Then the ingredient is displayed
