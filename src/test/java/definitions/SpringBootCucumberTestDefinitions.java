@@ -8,8 +8,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.spring.CucumberContextConfiguration;
+import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,10 +40,9 @@ public class SpringBootCucumberTestDefinitions {
     @Autowired
     private RecipeRepo recipeRepo;
 
-
-
-    @Given("A list of recipes are available")
-    public void aListOfRecipesAreAvailable() {
+    @Before
+    public void setUpTestData() {
+        // Populate test data before each scenario
         Recipe recipe1 = new Recipe();
         // Set properties for recipe1
         recipeRepo.save(recipe1);
@@ -49,7 +50,10 @@ public class SpringBootCucumberTestDefinitions {
         Recipe recipe2 = new Recipe();
         // Set properties for recipe2
         recipeRepo.save(recipe2);
+    }
 
+    @Given("A list of recipes are available")
+    public void aListOfRecipesAreAvailable() {
         try {
             ResponseEntity<String> response = new RestTemplate()
                     .exchange(BASE_URL + port + "/api/recipes", HttpMethod.GET, null, String.class);
@@ -65,10 +69,16 @@ public class SpringBootCucumberTestDefinitions {
 
     @When("I search for a recipe by id")
     public void iSearchForARecipeById() {
-
+        RestAssured.baseURI = BASE_URL;
+        RequestSpecification request = RestAssured.given();
+        // states that Request body is a JSON
+        request.header("Content-Type", "application/json");
+        response = request.get(BASE_URL + port + "/api/recipes/1");
     }
 
     @Then("the recipe is displayed")
     public void theRecipeIsDisplayed() {
+        Assert.assertEquals(200, response.getStatusCode());
+        Assert.assertNotNull(response.getBody());
     }
 }
