@@ -73,7 +73,17 @@ public class SpringBootCucumberTestDefinitions {
 
     @Given("A list of ingredients are available")
     public void aListOfIngredientsAreAvailable() {
-        
+        try {
+            ResponseEntity<String> response = new RestTemplate()
+                    .exchange(BASE_URL + port + "/ingredients", HttpMethod.GET, null, String.class);
+            List<Map<String, String>> recipes = JsonPath
+                    .from(String.valueOf(response
+                            .getBody())).get();
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
+            Assert.assertTrue(recipes.size() > 0);
+        } catch (HttpClientErrorException e) {
+            e.printStackTrace();
+        }
     }
 
     @When("I search for an ingredient by id")

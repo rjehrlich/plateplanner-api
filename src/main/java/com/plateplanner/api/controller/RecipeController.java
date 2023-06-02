@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/api")
 public class RecipeController {
 
     private RecipeRepo recipeRepo;
@@ -34,7 +33,7 @@ public class RecipeController {
 
     /**
      * getRecipe method provides a get request Endpoint that will take in:
-     * @param recipeId
+     * @param recipeId and
      * @return that recipe by ID
      */
     @GetMapping(path = "recipes/{recipeId}")
