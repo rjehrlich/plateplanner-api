@@ -76,11 +76,11 @@ public class SpringBootCucumberTestDefinitions {
         try {
             ResponseEntity<String> response = new RestTemplate()
                     .exchange(BASE_URL + port + "/ingredients", HttpMethod.GET, null, String.class);
-            List<Map<String, String>> recipes = JsonPath
+            List<Map<String, String>> ingredients = JsonPath
                     .from(String.valueOf(response
                             .getBody())).get();
             Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
-            Assert.assertTrue(recipes.size() > 0);
+            Assert.assertTrue(ingredients.size() > 0);
         } catch (HttpClientErrorException e) {
             e.printStackTrace();
         }
@@ -88,7 +88,11 @@ public class SpringBootCucumberTestDefinitions {
 
     @When("I search for an ingredient by id")
     public void iSearchForAnIngredientById() {
-        
+        RestAssured.baseURI = BASE_URL;
+        RequestSpecification request = RestAssured.given();
+        // states that Request body is a JSON
+        request.header("Content-Type", "application/json");
+        response = request.get(BASE_URL + port + "/ingredients/1");
     }
 
     @Then("the ingredient is displayed")
