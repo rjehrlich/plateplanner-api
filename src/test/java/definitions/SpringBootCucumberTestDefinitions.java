@@ -70,4 +70,13 @@ public class SpringBootCucumberTestDefinitions {
         Assert.assertEquals(200, response.getStatusCode());
         Assert.assertNotNull(response.getBody());
     }
+
+    @When("I find a recipe by id")
+    public void iFindARecipeById() {
+        
+    }
+
+    @Then("the list of ingredients associated is displayed")
+    public void theListOfIngredientsAssociatedIsDisplayed() {
+    }
 }
