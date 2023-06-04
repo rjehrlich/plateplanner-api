@@ -100,4 +100,19 @@ public class SpringBootCucumberTestDefinitions {
         Assert.assertEquals(200, response.getStatusCode());
         Assert.assertNotNull(response.getBody());
     }
+
+    @Given("A recipe with a list of ingredients is available")
+    public void aRecipeWithAListOfIngredientsIsAvailable() {
+        try {
+            ResponseEntity<String> response = new RestTemplate()
+                    .exchange(BASE_URL + port + "/recipes/1/ingredients", HttpMethod.GET, null, String.class);
+            List<Map<String, String>> recipeIngredients = JsonPath
+                    .from(String.valueOf(response
+                            .getBody())).get();
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
+            Assert.assertTrue(recipeIngredients.size() > 0);
+        } catch (HttpClientErrorException e) {
+            e.printStackTrace();
+        }
+    }
 }

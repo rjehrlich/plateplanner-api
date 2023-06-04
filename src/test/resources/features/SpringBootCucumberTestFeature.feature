@@ -14,3 +14,4 @@ Feature: Rest API Functionalities
 
 # RecipeIngredient Cases
   Scenario: User able to view ingredients associated to recipes
+    Given A recipe with a list of ingredients is available
