@@ -1,7 +1,7 @@
 package com.plateplanner.api.controller;
 
 import com.plateplanner.api.model.Recipe;
-import com.plateplanner.api.repository.RecipeRepo;
+import com.plateplanner.api.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,11 +13,11 @@ import java.util.Optional;
 @RestController
 public class RecipeController {
 
-    private RecipeRepo recipeRepo;
+    private RecipeService recipeService;
 
     @Autowired
-    public void setRecipeRepo(RecipeRepo recipeRepo) {
-        this.recipeRepo = recipeRepo;
+    public void setRecipeService(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
     /**
@@ -26,7 +26,7 @@ public class RecipeController {
      */
     @GetMapping(path = "/recipes")
     public List<Recipe> getRecipes() {
-        return recipeRepo.findAll();
+        return recipeService.getRecipes();
     }
 
     /**
@@ -36,6 +36,6 @@ public class RecipeController {
      */
     @GetMapping(path = "recipes/{recipeId}")
     public Optional<Recipe> getRecipe(@PathVariable(value = "recipeId") Long recipeId) {
-        return recipeRepo.findById(recipeId);
+        return recipeService.getRecipe(recipeId);
     }
 }
