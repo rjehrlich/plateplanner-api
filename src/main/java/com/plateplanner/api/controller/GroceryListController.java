@@ -7,7 +7,6 @@ import com.plateplanner.api.repository.GroceryListRepo;
 import com.plateplanner.api.repository.RecipeRepo;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -30,6 +29,11 @@ public class GroceryListController {
         this.groceryListRepo = groceryListRepo;
     }
 
+    /**
+     * generateGroceryList method creates an endpoint mapping that takes in multiple:
+     * @param recipeIds and
+     * @return all ingredients in a list for ALL recipes
+     */
     @PostMapping("/grocery-lists")
     public GroceryList generateGroceryList(@RequestBody List<Long> recipeIds) {
         // Retrieve the selected recipes from the recipe IDs
