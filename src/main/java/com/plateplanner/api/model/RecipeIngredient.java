@@ -60,14 +60,6 @@ public class RecipeIngredient implements Serializable {
         this.quantity = quantity;
     }
 
-    @Override
-    public String toString() {
-        return "RecipeIngredient{" +
-                "recipe=" + recipe +
-                ", ingredient=" + ingredient +
-                ", quantity=" + quantity +
-                '}';
-    }
 
     /**
      * hashCode method overrides the default method in the superclass
@@ -107,5 +99,14 @@ public class RecipeIngredient implements Serializable {
 
         // // compare ingredient attribute of object with ingredient attribute of obj(that)
         return Objects.equals(ingredient, that.ingredient);
+    }
+
+    @Override
+    public String toString() {
+        return "RecipeIngredient{" +
+                "recipe=" + recipe +
+                ", ingredient=" + ingredient +
+                ", quantity='" + quantity + '\'' +
+                '}';
     }
 }
