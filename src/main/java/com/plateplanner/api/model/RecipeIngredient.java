@@ -15,12 +15,12 @@ public class RecipeIngredient implements Serializable {
      * foreign key mappings for Recipe and Ingredient entities
      */
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "recipe_id")
     public Recipe recipe;
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ingredient_id")
     public Ingredient ingredient;
 
@@ -109,4 +109,5 @@ public class RecipeIngredient implements Serializable {
                 ", quantity='" + quantity + '\'' +
                 '}';
     }
+
 }

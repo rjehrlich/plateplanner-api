@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.plateplanner.api.ApiApplication;
 import com.plateplanner.api.model.Ingredient;
 import com.plateplanner.api.model.Recipe;
+import com.plateplanner.api.model.RecipeIngredient;
+import com.plateplanner.api.repository.RecipeIngredientRepo;
 import com.plateplanner.api.repository.RecipeRepo;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -19,6 +21,7 @@ import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +31,10 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 
 @CucumberContextConfiguration
@@ -42,7 +49,9 @@ public class SpringBootCucumberTestDefinitions {
     private static Response response;
 
     @Autowired
-    private RecipeRepo recipeRepo;
+    private RecipeIngredientRepo recipeIngredientRepo;
+
+    private ResponseEntity<List<RecipeIngredient>> recipeIngredientsResponse;
 
 
     @Given("A list of recipes are available")
@@ -53,7 +62,7 @@ public class SpringBootCucumberTestDefinitions {
             List<Map<String, String>> recipes = JsonPath
                     .from(String.valueOf(response
                             .getBody())).get();
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
+            assertEquals(response.getStatusCode(), HttpStatus.OK);
             Assert.assertTrue(recipes.size() > 0);
         } catch (HttpClientErrorException e) {
             e.printStackTrace();
@@ -71,8 +80,8 @@ public class SpringBootCucumberTestDefinitions {
 
     @Then("the recipe is displayed")
     public void theRecipeIsDisplayed() {
-        Assert.assertEquals(200, response.getStatusCode());
-        Assert.assertNotNull(response.getBody());
+        assertEquals(200, response.getStatusCode());
+        assertNotNull(response.getBody());
     }
 
     @Given("A list of ingredients are available")
@@ -83,7 +92,7 @@ public class SpringBootCucumberTestDefinitions {
             List<Map<String, String>> ingredients = JsonPath
                     .from(String.valueOf(response
                             .getBody())).get();
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
+            assertEquals(response.getStatusCode(), HttpStatus.OK);
             Assert.assertTrue(ingredients.size() > 0);
         } catch (HttpClientErrorException e) {
             e.printStackTrace();
@@ -101,18 +110,50 @@ public class SpringBootCucumberTestDefinitions {
 
     @Then("the ingredient is displayed")
     public void theIngredientIsDisplayed() {
-        Assert.assertEquals(200, response.getStatusCode());
-        Assert.assertNotNull(response.getBody());
+        assertEquals(200, response.getStatusCode());
+        assertNotNull(response.getBody());
     }
 
-    @Given("A recipe with a list of ingredients is available")
+    @Given("A recipe has a list of ingredients available")
     public void aRecipeWithAListOfIngredientsIsAvailable() {
         try {
-            ResponseEntity<String> response = new RestTemplate()
-                    .exchange(BASE_URL + port + "/recipes/1/ingredients", HttpMethod.GET, null, String.class);
+            // use RestTemplate to send GET request to the URL /recipes/1/ingredients and store in type list of recipeingredients
+            recipeIngredientsResponse = new RestTemplate()
+                    .exchange(BASE_URL + port + "/recipes/1/ingredients", HttpMethod.GET, null, new ParameterizedTypeReference<List<RecipeIngredient>>() {
+                    });
+            // check if the response code is OK
+            assertEquals(recipeIngredientsResponse.getStatusCode(), HttpStatus.OK);
+            List<RecipeIngredient> recipeIngredients = recipeIngredientsResponse.getBody();
+            assertNotNull(recipeIngredients);
 
+            // loop through all RecipeIngredient objects in  recipeIngredients to ensure all have id of 1
+            for (RecipeIngredient recipeIngredient : recipeIngredients) {
+                Assert.assertSame(1L, recipeIngredient.getRecipe().getId());
+            }
         } catch (HttpClientErrorException e) {
             e.printStackTrace();
         }
     }
+
+    @When("I search for an ingredient by ID and recipe ID")
+    public void iSearchForAnIngredientByIdAndRecipeId() {
+        RecipeIngredient recipeIngredient1 = recipeIngredientsResponse.getBody().get(0);
+        ResponseEntity<RecipeIngredient> ingredientResponse = new RestTemplate().exchange(
+                BASE_URL + port + "/recipes/1/ingredients/" + recipeIngredient1.ingredient.getId(),
+                HttpMethod.GET,
+                null,
+                RecipeIngredient.class
+        );
+        assertEquals(HttpStatus.OK, ingredientResponse.getStatusCode());
+        assertNotNull(ingredientResponse.getBody());
+    }
+
+    @Then("the ingredient by recipe id is displayed")
+    public void theIngredientByRecipeIdIsDisplayed() {
+        RecipeIngredient recipeIngredient1 = recipeIngredientsResponse.getBody().get(0);
+        Assert.assertNotNull(recipeIngredient1);
+        System.out.println(recipeIngredient1);
+    }
+
+
 }
