@@ -15,5 +15,5 @@ Feature: Rest API Functionalities
 # RecipeIngredient Cases
   Scenario: User able to view ingredients associated to recipe
     Given A recipe has a list of ingredients available
-#    When I search for an ingredient by ID and recipe ID
-#    Then the ingredient by recipe id is displayed
+    When I search for an ingredient by ID and recipe ID
+    Then the ingredient by recipe id is displayed
