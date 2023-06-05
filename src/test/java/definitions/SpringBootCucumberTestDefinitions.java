@@ -122,10 +122,16 @@ public class SpringBootCucumberTestDefinitions {
                     .exchange(BASE_URL + port + "/recipes/1/ingredients", HttpMethod.GET, null, new ParameterizedTypeReference<List<RecipeIngredient>>() {
                     });
             // check if the response code is OK
-            // System.out.println(recipeIngredientsResponse);
-            assertEquals(recipeIngredientsResponse.getStatusCode(), HttpStatus.OK);
+            Assert.assertEquals(recipeIngredientsResponse.getStatusCode(), HttpStatus.OK);
+            // check if the response is not null
+            Assert.assertNotNull(recipeIngredientsResponse);
+            // get the body of the response and check if there is something there
             List<RecipeIngredient> recipeIngredients = recipeIngredientsResponse.getBody();
-            assertNotNull(recipeIngredients);
+            Assert.assertNotNull(recipeIngredients);
+            //check if the recipeID is 1L
+            Assert.assertEquals(1L, recipeIngredients.stream().allMatch(recipeIngredient -> recipeIngredient.getRecipe().getId().equals(1L)));
+            // check if there is a list of ingredients
+            Assert.assertTrue(recipeIngredients.size() > 0);
 
         } catch (HttpClientErrorException e) {
             e.printStackTrace();
