@@ -2,6 +2,7 @@ package com.plateplanner.api.controller;
 
 import com.plateplanner.api.model.Ingredient;
 import com.plateplanner.api.repository.IngredientRepo;
+import com.plateplanner.api.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,11 +14,11 @@ import java.util.Optional;
 @RestController
 public class IngredientController {
 
-    private IngredientRepo ingredientRepo;
+    private IngredientService ingredientService;
 
     @Autowired
-    public void setIngredientRepo(IngredientRepo ingredientRepo) {
-        this.ingredientRepo = ingredientRepo;
+    public void setIngredientService(IngredientService ingredientService) {
+        this.ingredientService = ingredientService;
     }
 
     /**
@@ -26,7 +27,7 @@ public class IngredientController {
      */
     @GetMapping(path = "/ingredients")
     public List<Ingredient> getIngredients() {
-        return ingredientRepo.findAll();
+        return ingredientService.getIngredients();
     }
 
     /**
@@ -35,8 +36,8 @@ public class IngredientController {
      * @return that ingredient by ID
      */
     @GetMapping(path = "ingredients/{ingredientId}")
-    public Optional<Ingredient> getRecipe(@PathVariable(value = "ingredientId") Long ingredientId) {
-        return ingredientRepo.findById(ingredientId);
+    public Optional<Ingredient> getIngredient(@PathVariable(value = "ingredientId") Long ingredientId) {
+        return ingredientService.getIngredient(ingredientId);
     }
 
 }
