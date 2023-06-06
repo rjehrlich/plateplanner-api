@@ -1,14 +1,8 @@
 package definitions;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.plateplanner.api.ApiApplication;
-import com.plateplanner.api.model.Ingredient;
-import com.plateplanner.api.model.Recipe;
 import com.plateplanner.api.model.RecipeIngredient;
 import com.plateplanner.api.repository.RecipeIngredientRepo;
-import com.plateplanner.api.repository.RecipeRepo;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -32,6 +26,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -138,13 +133,34 @@ public class SpringBootCucumberTestDefinitions {
 
     @When("I search for an ingredient by ID and recipe ID")
     public void iSearchForAnIngredientByIdAndRecipeId() {
-        recipeIngredientsResponse = new RestTemplate()
-                .exchange(BASE_URL + port + "/recipes/1/ingredients", HttpMethod.GET, null, List.class);
+        try {
+            // use RestTemplate to send GET request to the URL /recipes/1/ingredients and store in type list of recipeingredients
+            recipeIngredientsResponse = new RestTemplate()
+                    .exchange(BASE_URL + port + "/recipes/1/ingredients", HttpMethod.GET, null, List.class);
+            // check if the response code is OK
+            Assert.assertEquals(recipeIngredientsResponse.getStatusCode(), HttpStatus.OK);
+            // check if the response is not null
+            Assert.assertNotNull(recipeIngredientsResponse);
+            // get the body of the response and check if there is something there
+            List<RecipeIngredient> recipeIngredients = recipeIngredientsResponse.getBody();
+            Assert.assertNotNull(recipeIngredients);
+
+            // check if ingredient exists
+            Assert.assertNotNull(recipeIngredientRepo.findByRecipeIdAndIngredientId(1L, 1L).get().ingredient);
+//
+        } catch (HttpClientErrorException e) {
+            e.printStackTrace();
+        }
     }
 
     @Then("the ingredient by recipe id is displayed")
     public void theIngredientByRecipeIdIsDisplayed() {
+        // use RestTemplate to send GET request to the URL /recipes/1/ingredients and store in type list of recipeingredients
+        recipeIngredientsResponse = new RestTemplate()
+                .exchange(BASE_URL + port + "/recipes/1/ingredients", HttpMethod.GET, null, List.class);
 
+        assertEquals(HttpStatus.OK, recipeIngredientsResponse.getStatusCode());
+        assertNotNull(recipeIngredientsResponse.getBody().get(0));
     }
 
 
