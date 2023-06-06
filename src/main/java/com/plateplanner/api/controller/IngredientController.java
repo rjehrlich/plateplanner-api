@@ -1,7 +1,6 @@
 package com.plateplanner.api.controller;
 
 import com.plateplanner.api.model.Ingredient;
-import com.plateplanner.api.repository.IngredientRepo;
 import com.plateplanner.api.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
