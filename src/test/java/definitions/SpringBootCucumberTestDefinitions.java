@@ -3,6 +3,7 @@ package definitions;
 import com.plateplanner.api.ApiApplication;
 import com.plateplanner.api.model.RecipeIngredient;
 import com.plateplanner.api.repository.RecipeIngredientRepo;
+import com.plateplanner.api.service.RecipeIngredientService;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,18 +16,14 @@ import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -45,6 +42,9 @@ public class SpringBootCucumberTestDefinitions {
 
     @Autowired
     private RecipeIngredientRepo recipeIngredientRepo;
+
+    @Autowired
+    private RecipeIngredientService recipeIngredientService;
 
     private ResponseEntity<List> recipeIngredientsResponse;
 
@@ -147,7 +147,7 @@ public class SpringBootCucumberTestDefinitions {
 
             // check if ingredient exists
             Assert.assertNotNull(recipeIngredientRepo.findByRecipeIdAndIngredientId(1L, 1L).get().ingredient);
-//
+            Assert.assertNotNull(recipeIngredientService.getRecipeIngredient(1L, 1L));
         } catch (HttpClientErrorException e) {
             e.printStackTrace();
         }
