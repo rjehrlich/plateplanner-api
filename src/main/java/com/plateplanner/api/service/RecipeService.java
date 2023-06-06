@@ -4,8 +4,6 @@ import com.plateplanner.api.model.Recipe;
 import com.plateplanner.api.repository.RecipeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +15,7 @@ public class RecipeService {
     RecipeRepo recipeRepo;
 
     /**
-     * getRecipes method will
+     * getRecipes method will call the recipe repository to
      * @return a list of all recipes
      */
     public List<Recipe> getRecipes() {
@@ -25,7 +23,7 @@ public class RecipeService {
     }
 
     /**
-     * getRecipe method provides a get request Endpoint that will take in:
+     * getRecipe method will call the recipe repository taking in:
      * @param recipeId and
      * @return that recipe by ID
      */
