@@ -53,7 +53,7 @@ public class SpringBootCucumberTestDefinitions {
     public void aListOfRecipesAreAvailable() {
         try {
             ResponseEntity<String> response = new RestTemplate()
-                    .exchange(BASE_URL + port + "/api/recipes", HttpMethod.GET, null, String.class);
+                    .exchange(BASE_URL + port + "/recipes", HttpMethod.GET, null, String.class);
             List<Map<String, String>> recipes = JsonPath
                     .from(String.valueOf(response
                             .getBody())).get();
@@ -70,7 +70,7 @@ public class SpringBootCucumberTestDefinitions {
         RequestSpecification request = RestAssured.given();
         // states that Request body is a JSON
         request.header("Content-Type", "application/json");
-        response = request.get(BASE_URL + port + "/api/recipes/1");
+        response = request.get(BASE_URL + port + "/recipes/1");
     }
 
     @Then("the recipe is displayed")
