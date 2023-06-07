@@ -13,6 +13,9 @@ public class Recipe {
     private Long id;
 
     @Column
+    private String imgUrl;
+
+    @Column
     private String title;
 
     @Column
@@ -49,8 +52,9 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(Long id, String title, String description, String prepTime, String cookTime, String instructions, String sourceUrl) {
+    public Recipe(Long id, String imgUrl, String title, String description, String prepTime, String cookTime, String instructions, String sourceUrl) {
         this.id = id;
+        this.imgUrl = imgUrl;
         this.title = title;
         this.description = description;
         this.prepTime = prepTime;
@@ -123,16 +127,26 @@ public class Recipe {
         this.sourceUrl = sourceUrl;
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
     @Override
     public String toString() {
         return "Recipe{" +
                 "id=" + id +
+                ", imgUrl='" + imgUrl + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", prepTime=" + prepTime +
-                ", cookTime=" + cookTime +
+                ", prepTime='" + prepTime + '\'' +
+                ", cookTime='" + cookTime + '\'' +
                 ", instructions='" + instructions + '\'' +
                 ", sourceUrl='" + sourceUrl + '\'' +
+                ", ingredients=" + ingredients +
                 '}';
     }
 }
