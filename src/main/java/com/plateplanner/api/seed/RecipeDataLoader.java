@@ -58,6 +58,9 @@ public class RecipeDataLoader implements CommandLineRunner {
             Ingredient ingredient23 = new Ingredient(23L, "Cucumber");
             Ingredient ingredient24 = new Ingredient(24L, "Carrot(s)");
             Ingredient ingredient25 = new Ingredient(25L, "Mint Leaves");
+            Ingredient ingredient26 = new Ingredient(26L, "Avocado(s)");
+            Ingredient ingredient27 = new Ingredient(27L, "Fish: Ahi Tuna Steaks");
+            Ingredient ingredient28 = new Ingredient(28L, "Ginger");
 
 
             // Save the ingredients
@@ -65,12 +68,12 @@ public class RecipeDataLoader implements CommandLineRunner {
                     ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6,
                     ingredient7, ingredient8, ingredient9, ingredient10, ingredient11, ingredient12, ingredient13,
                     ingredient14, ingredient15, ingredient16, ingredient17, ingredient18, ingredient19, ingredient20,
-                    ingredient21, ingredient22, ingredient23, ingredient24, ingredient25));
+                    ingredient21, ingredient22, ingredient23, ingredient24, ingredient25, ingredient26, ingredient27));
 
             // Create Recipes
             Recipe recipe1 = new Recipe(1L,"https://www.pressurecookrecipes.com/wp-content/uploads/2021/01/instant-pot-birria.webp", "Instant Pot Birria", "Cut cooktime by more than half making your meat in the Instant Pot. You can turn this into delicious tacos, meat for rice bowls, or a soup!", "30min", "1hr", "", "https://www.pressurecookrecipes.com/instant-pot-birria/");
-            Recipe recipe2 = new Recipe(2L, "https://i0.wp.com/scruffandsteph.com/wp-content/uploads/2019/05/Vietnamese-Beef-Noodle-Bowl-2-1.jpg?w=1500&ssl=1", "Beef Vermicelli(Bun Bo Xao)", "A refreshing, healthy, and easy to make meal that will not disappoint.", "30min", "35min", "", "https://scruffandsteph.com/2019/05/08/vietnamese-beef-noodle-bowls/");
-//            Recipe recipe3 = new Recipe();
+            Recipe recipe2 = new Recipe(2L, "https://i0.wp.com/scruffandsteph.com/wp-content/uploads/2019/05/Vietnamese-Beef-Noodle-Bowl-2-1.jpg?w=1500&ssl=1", "Beef Vermicelli(Bun Bo Xao)", "A refreshing, healthy, and easy to make meal that will not disappoint.", "30min", "5min", "", "https://scruffandsteph.com/2019/05/08/vietnamese-beef-noodle-bowls/");
+            Recipe recipe3 = new Recipe(3L, "https://fitfoodiefinds.com/wp-content/uploads/2019/07/poke-bowl-14.jpg", "Ahi Tuna Bowl", "A delicious and nutritious bowl that is so easy to make it will likely be in your weekly rotation.", "45min", "30min", "", "https://fitfoodiefinds.com/seared-ahi-tuna-poke-bowl/");
 //            Recipe recipe4 = new Recipe();
 //            Recipe recipe5 = new Recipe();
 
@@ -106,9 +109,19 @@ public class RecipeDataLoader implements CommandLineRunner {
             RecipeIngredient recipeIngredient26 = new RecipeIngredient(recipe2, ingredient25, "3-5");
             RecipeIngredient recipeIngredient27 = new RecipeIngredient(recipe2, ingredient24, "3");
 
+            // recipe3 associations
+            RecipeIngredient recipeIngredient28 = new RecipeIngredient(recipe3, ingredient27, "1.5lbs");
+            RecipeIngredient recipeIngredient29 = new RecipeIngredient(recipe3, ingredient16, "1/3cup");
+            RecipeIngredient recipeIngredient30 = new RecipeIngredient(recipe3, ingredient28, "1tsp");
+            RecipeIngredient recipeIngredient31 = new RecipeIngredient(recipe3, ingredient18, "3");
+            RecipeIngredient recipeIngredient32 = new RecipeIngredient(recipe3, ingredient19, "1/4c");
+            RecipeIngredient recipeIngredient33 = new RecipeIngredient(recipe3, ingredient23, "1");
+            RecipeIngredient recipeIngredient34 = new RecipeIngredient(recipe3, ingredient22, "1");
+            RecipeIngredient recipeIngredient35 = new RecipeIngredient(recipe3, ingredient15, "2tbsp");
+            RecipeIngredient recipeIngredient36 = new RecipeIngredient(recipe3, ingredient26, "2");
 
             // Save the recipes and recipe-ingredient associations
-            recipeRepo.saveAll(Arrays.asList(recipe1, recipe2));
+            recipeRepo.saveAll(Arrays.asList(recipe1, recipe2, recipe3));
             recipeIngredientRepo.saveAll(Arrays.asList(
                     recipeIngredient1, recipeIngredient2, recipeIngredient3,
                     recipeIngredient4, recipeIngredient5, recipeIngredient6,
@@ -118,7 +131,9 @@ public class RecipeDataLoader implements CommandLineRunner {
                     recipeIngredient16, recipeIngredient17, recipeIngredient18,
                     recipeIngredient19, recipeIngredient20, recipeIngredient21, recipeIngredient22,
                     recipeIngredient23, recipeIngredient24, recipeIngredient25, recipeIngredient26,
-                    recipeIngredient27));
+                    recipeIngredient27, recipeIngredient28, recipeIngredient29, recipeIngredient30,
+                    recipeIngredient31, recipeIngredient32, recipeIngredient33, recipeIngredient34,
+                    recipeIngredient35, recipeIngredient36));
         }
     }
 }
