@@ -50,16 +50,26 @@ public class RecipeDataLoader implements CommandLineRunner {
             Ingredient ingredient15 = new Ingredient(15L, "Apple Cider Vinegar");
             Ingredient ingredient16 = new Ingredient(16L, "Soy Sauce");
             Ingredient ingredient17 = new Ingredient(17L, "Fish Sauce");
+            Ingredient ingredient18 = new Ingredient(18L, "Lime(s)");
+            Ingredient ingredient19 = new Ingredient(19L, "Cilantro");
+            Ingredient ingredient20 = new Ingredient(20L, "Beef: Flank");
+            Ingredient ingredient21 = new Ingredient(21L, "Vermicelli Rice Noodles");
+            Ingredient ingredient22 = new Ingredient(22L, "Romaine Hearts");
+            Ingredient ingredient23 = new Ingredient(23L, "Cucumber");
+            Ingredient ingredient24 = new Ingredient(24L, "Carrot(s)");
+            Ingredient ingredient25 = new Ingredient(25L, "Mint Leaves");
+
 
             // Save the ingredients
             ingredientRepo.saveAll(Arrays.asList(
                     ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6,
                     ingredient7, ingredient8, ingredient9, ingredient10, ingredient11, ingredient12, ingredient13,
-                    ingredient14, ingredient15, ingredient16, ingredient17));
+                    ingredient14, ingredient15, ingredient16, ingredient17, ingredient18, ingredient19, ingredient20,
+                    ingredient21, ingredient22, ingredient23, ingredient24, ingredient25));
 
             // Create Recipes
             Recipe recipe1 = new Recipe(1L, "Instant Pot Birria", "Cut cooktime by more than half making your meat in the Instant Pot. You can turn this into delicious tacos, meat for rice bowls, or a soup!", "30min", "1hr", "", "https://www.pressurecookrecipes.com/instant-pot-birria/");
-//            Recipe recipe2 = new Recipe();
+            Recipe recipe2 = new Recipe(2L, "Beef Vermicelli(Bun Bo Xao)", "A refreshing, healthy, and easy to make meal that will not disappoint.", "30min", "35min", "", "https://scruffandsteph.com/2019/05/08/vietnamese-beef-noodle-bowls/");
 //            Recipe recipe3 = new Recipe();
 //            Recipe recipe4 = new Recipe();
 //            Recipe recipe5 = new Recipe();
@@ -83,16 +93,32 @@ public class RecipeDataLoader implements CommandLineRunner {
             RecipeIngredient recipeIngredient15 = new RecipeIngredient(recipe1, ingredient15, "2tbsp");
             RecipeIngredient recipeIngredient16 = new RecipeIngredient(recipe1, ingredient16, "1tbsp");
             RecipeIngredient recipeIngredient17 = new RecipeIngredient(recipe1, ingredient17, "1tbsp");
+            RecipeIngredient recipeIngredient18 = new RecipeIngredient(recipe1, ingredient18, "3");
+            RecipeIngredient recipeIngredient19 = new RecipeIngredient(recipe1, ingredient19, "1bunch");
+
                 // recipe2 associations
+            RecipeIngredient recipeIngredient20 = new RecipeIngredient(recipe2, ingredient20, "1.5lbs");
+            RecipeIngredient recipeIngredient21 = new RecipeIngredient(recipe2, ingredient21, "10oz");
+            RecipeIngredient recipeIngredient22 = new RecipeIngredient(recipe2, ingredient7, "2");
+            RecipeIngredient recipeIngredient23 = new RecipeIngredient(recipe2, ingredient22, "1");
+            RecipeIngredient recipeIngredient24 = new RecipeIngredient(recipe2, ingredient23, "1");
+            RecipeIngredient recipeIngredient25 = new RecipeIngredient(recipe2, ingredient19, "1bunch");
+            RecipeIngredient recipeIngredient26 = new RecipeIngredient(recipe2, ingredient25, "3-5");
+            RecipeIngredient recipeIngredient27 = new RecipeIngredient(recipe2, ingredient24, "3");
+
 
             // Save the recipes and recipe-ingredient associations
-            recipeRepo.saveAll(Arrays.asList(recipe1));
+            recipeRepo.saveAll(Arrays.asList(recipe1, recipe2));
             recipeIngredientRepo.saveAll(Arrays.asList(
                     recipeIngredient1, recipeIngredient2, recipeIngredient3,
                     recipeIngredient4, recipeIngredient5, recipeIngredient6,
                     recipeIngredient7, recipeIngredient8, recipeIngredient9,
                     recipeIngredient10, recipeIngredient11, recipeIngredient12,
-                    recipeIngredient13, recipeIngredient14, recipeIngredient15, recipeIngredient16, recipeIngredient17));
+                    recipeIngredient13, recipeIngredient14, recipeIngredient15,
+                    recipeIngredient16, recipeIngredient17, recipeIngredient18,
+                    recipeIngredient19, recipeIngredient20, recipeIngredient21, recipeIngredient22,
+                    recipeIngredient23, recipeIngredient24, recipeIngredient25, recipeIngredient26,
+                    recipeIngredient27));
         }
     }
 }
