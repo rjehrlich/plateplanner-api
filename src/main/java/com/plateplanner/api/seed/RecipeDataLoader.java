@@ -68,8 +68,8 @@ public class RecipeDataLoader implements CommandLineRunner {
                     ingredient21, ingredient22, ingredient23, ingredient24, ingredient25));
 
             // Create Recipes
-            Recipe recipe1 = new Recipe(1L, "Instant Pot Birria", "Cut cooktime by more than half making your meat in the Instant Pot. You can turn this into delicious tacos, meat for rice bowls, or a soup!", "30min", "1hr", "", "https://www.pressurecookrecipes.com/instant-pot-birria/");
-            Recipe recipe2 = new Recipe(2L, "Beef Vermicelli(Bun Bo Xao)", "A refreshing, healthy, and easy to make meal that will not disappoint.", "30min", "35min", "", "https://scruffandsteph.com/2019/05/08/vietnamese-beef-noodle-bowls/");
+            Recipe recipe1 = new Recipe(1L,"https://www.pressurecookrecipes.com/wp-content/uploads/2021/01/instant-pot-birria.webp", "Instant Pot Birria", "Cut cooktime by more than half making your meat in the Instant Pot. You can turn this into delicious tacos, meat for rice bowls, or a soup!", "30min", "1hr", "", "https://www.pressurecookrecipes.com/instant-pot-birria/");
+            Recipe recipe2 = new Recipe(2L, "https://i0.wp.com/scruffandsteph.com/wp-content/uploads/2019/05/Vietnamese-Beef-Noodle-Bowl-2-1.jpg?w=1500&ssl=1", "Beef Vermicelli(Bun Bo Xao)", "A refreshing, healthy, and easy to make meal that will not disappoint.", "30min", "35min", "", "https://scruffandsteph.com/2019/05/08/vietnamese-beef-noodle-bowls/");
 //            Recipe recipe3 = new Recipe();
 //            Recipe recipe4 = new Recipe();
 //            Recipe recipe5 = new Recipe();
