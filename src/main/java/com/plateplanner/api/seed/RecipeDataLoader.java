@@ -68,7 +68,7 @@ public class RecipeDataLoader implements CommandLineRunner {
                     ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6,
                     ingredient7, ingredient8, ingredient9, ingredient10, ingredient11, ingredient12, ingredient13,
                     ingredient14, ingredient15, ingredient16, ingredient17, ingredient18, ingredient19, ingredient20,
-                    ingredient21, ingredient22, ingredient23, ingredient24, ingredient25, ingredient26, ingredient27));
+                    ingredient21, ingredient22, ingredient23, ingredient24, ingredient25, ingredient26, ingredient27, ingredient28));
 
             // Create Recipes
             Recipe recipe1 = new Recipe(1L,"https://www.pressurecookrecipes.com/wp-content/uploads/2021/01/instant-pot-birria.webp", "Instant Pot Birria", "Cut cooktime by more than half making your meat in the Instant Pot. You can turn this into delicious tacos, meat for rice bowls, or a soup!", "30min", "1hr", "", "https://www.pressurecookrecipes.com/instant-pot-birria/");
