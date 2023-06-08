@@ -45,7 +45,7 @@ public class RecipeIngredientController {
     }
 
     @GetMapping("/{recipeIds}/ingredients")
-    public List<Ingredient> getIngredientsForRecipes(@PathVariable List<Long> recipeIds) {
+    public List<RecipeIngredient> getIngredientsForRecipes(@PathVariable List<Long> recipeIds) {
         return recipeIngredientService.getIngredientsForRecipes(recipeIds);
     }
 

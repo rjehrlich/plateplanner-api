@@ -32,6 +32,9 @@ public class RecipeIngredient implements Serializable {
     @MapsId("ingredientId") // Maps to the ingredient field in RecipeIngredientId
     private Ingredient ingredient;
 
+    @Transient
+    private String ingredientName;
+
     @Column
     private String quantity;
 
@@ -44,6 +47,14 @@ public class RecipeIngredient implements Serializable {
         this.recipe = recipe;
         this.ingredient = ingredient;
         this.quantity = quantity;
+    }
+
+    public String getIngredientName() {
+        return ingredientName;
+    }
+
+    public void setIngredientName(String ingredientName) {
+        this.ingredientName = ingredientName;
     }
 
     public Recipe getRecipe() {

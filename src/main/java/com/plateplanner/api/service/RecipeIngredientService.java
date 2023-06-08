@@ -4,6 +4,7 @@ import com.plateplanner.api.exception.InformationNotFoundException;
 import com.plateplanner.api.model.Ingredient;
 import com.plateplanner.api.model.Recipe;
 import com.plateplanner.api.model.RecipeIngredient;
+import com.plateplanner.api.repository.IngredientRepo;
 import com.plateplanner.api.repository.RecipeIngredientRepo;
 import com.plateplanner.api.repository.RecipeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class RecipeIngredientService {
 
     private RecipeRepo recipeRepo;
 
+    private IngredientRepo ingredientRepo;
+
     @Autowired
     public void setRecipeIngredientRepo(RecipeIngredientRepo recipeIngredientRepo) {
         this.recipeIngredientRepo = recipeIngredientRepo;
@@ -28,6 +31,11 @@ public class RecipeIngredientService {
     @Autowired
     public void setRecipeRepo(RecipeRepo recipeRepo) {
         this.recipeRepo = recipeRepo;
+    }
+
+    @Autowired
+    public void setIngredientRepo(IngredientRepo ingredientRepo) {
+        this.ingredientRepo = ingredientRepo;
     }
 
     /**
@@ -72,24 +80,48 @@ public class RecipeIngredientService {
      * @param recipeIds the list of recipe IDs to fetch ingredients for
      * @return the combined list of ingredients from the specified recipes
      */
-    public List<Ingredient> getIngredientsForRecipes(List<Long> recipeIds) {
-        List<Ingredient> ingredients = new ArrayList<>();
+//    public List<Ingredient> getIngredientsForRecipes(List<Long> recipeIds) {
+//        List<Ingredient> ingredients = new ArrayList<>();
+//
+//        for (Long recipeId : recipeIds) {
+//            Optional<Recipe> recipe = recipeRepo.findById(recipeId);
+//            if (recipe.isPresent()) {
+//                List<RecipeIngredient> recipeIngredients = recipe.get().getRecipeIngredients();
+//                for (RecipeIngredient recipeIngredient : recipeIngredients) {
+//                    Ingredient ingredient = recipeIngredient.getIngredient();
+//                    if (!ingredients.contains(ingredient)) {
+//                        ingredients.add(ingredient);
+//
+//                    }
+//                }
+//            } else {
+//                throw new InformationNotFoundException("Recipe with ID " + recipeId + " not found");
+//            }
+//        }
+//        return ingredients;
+//    }
+
+    public List<RecipeIngredient> getIngredientsForRecipes(List<Long> recipeIds) {
+        List<RecipeIngredient> recipeIngredients = new ArrayList<>();
 
         for (Long recipeId : recipeIds) {
             Optional<Recipe> recipe = recipeRepo.findById(recipeId);
             if (recipe.isPresent()) {
-                List<RecipeIngredient> recipeIngredients = recipe.get().getRecipeIngredients();
-                for (RecipeIngredient recipeIngredient : recipeIngredients) {
-                    Ingredient ingredient = recipeIngredient.getIngredient();
-                    if (!ingredients.contains(ingredient)) {
-                        ingredients.add(ingredient);
-                    }
-                }
+                List<RecipeIngredient> ingredients = recipe.get().getRecipeIngredients();
+                recipeIngredients.addAll(ingredients);
             } else {
                 throw new InformationNotFoundException("Recipe with ID " + recipeId + " not found");
             }
         }
-        return ingredients;
-    }
 
+         // Fetch the ingredient entity for each recipe ingredient and set the name
+            for (RecipeIngredient recipeIngredient : recipeIngredients) {
+                Ingredient ingredient = ingredientRepo.findById(recipeIngredient.getIngredient().getId()).orElse(null);
+                if (ingredient != null) {
+                    recipeIngredient.setIngredientName(ingredient.getName());
+                }
+            }
+
+        return recipeIngredients;
+    }
 }
