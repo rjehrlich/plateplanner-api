@@ -6,12 +6,14 @@ import com.plateplanner.api.service.RecipeIngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping(path = "/recipes")
 public class RecipeIngredientController {
 
     private RecipeIngredientService recipeIngredientService;
@@ -23,11 +25,10 @@ public class RecipeIngredientController {
 
     /**
      * getRecipeIngredients method provides an endpoint that will take in:
-     *
      * @param recipeId and
      * @return the ingredients in a list of that recipe
      */
-    @GetMapping(path = "/recipes/{recipeId}/ingredients")
+    @GetMapping(path = "/{recipeId}/recipe-ingredients")
     public List<Ingredient> getRecipeIngredients(@PathVariable Long recipeId) {
         return recipeIngredientService.getRecipeIngredients(recipeId);
     }
@@ -38,9 +39,14 @@ public class RecipeIngredientController {
      * @param ingredientId and
      * @return a single ingredient that matches the given id and recipe id
      */
-    @GetMapping(path = "/{ingredientId}")
+    @GetMapping(path = "/{recipeId}/recipe-ingredients/{ingredientId}")
     public Optional<RecipeIngredient> getRecipeIngredient(@PathVariable Long recipeId, @PathVariable Long ingredientId) {
         return recipeIngredientService.getRecipeIngredient(recipeId, ingredientId);
+    }
+
+    @GetMapping("/{recipeIds}/ingredients")
+    public List<Ingredient> getIngredientsForRecipes(@PathVariable List<Long> recipeIds) {
+        return recipeIngredientService.getIngredientsForRecipes(recipeIds);
     }
 
 }
