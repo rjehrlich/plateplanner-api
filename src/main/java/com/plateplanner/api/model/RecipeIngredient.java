@@ -1,5 +1,7 @@
 package com.plateplanner.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -18,11 +20,13 @@ public class RecipeIngredient implements Serializable {
      * Combine @Id annotation with @ManyToOne and @JoinColumn to manage the
      * foreign key mappings for Recipe and Ingredient entities
      */
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "recipe_id")
     @MapsId("recipeId") // Maps to the recipe field in RecipeIngredientId
     private Recipe recipe;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ingredient_id")
     @MapsId("ingredientId") // Maps to the ingredient field in RecipeIngredientId
