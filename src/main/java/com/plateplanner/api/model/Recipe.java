@@ -36,17 +36,10 @@ public class Recipe {
 
     /**
      * A Recipe can have many Ingredients and an Ingredient can be associated w multiple Recipes:
-     * @ManyToMany used to establish relationship between Recipe and Ingredient
-     * @JoinTable specifies name of join table used with the foreign key mappings
      * List ingredients attribute will create a collection of ingredients associate with a recipe
      */
-    @ManyToMany
-    @JoinTable(
-            name = "recipe_ingredient",
-            joinColumns = @JoinColumn(name = "recipe_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingredient_id")
-    )
-    private List<Ingredient> ingredients;
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private List<RecipeIngredient> recipeIngredients;
 
 
     public Recipe() {
@@ -63,12 +56,13 @@ public class Recipe {
         this.sourceUrl = sourceUrl;
     }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
+
+    public List<RecipeIngredient> getRecipeIngredients() {
+        return recipeIngredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
+        this.recipeIngredients = recipeIngredients;
     }
 
     public Long getId() {
@@ -135,6 +129,7 @@ public class Recipe {
         this.imgUrl = imgUrl;
     }
 
+
     @Override
     public String toString() {
         return "Recipe{" +
@@ -146,7 +141,7 @@ public class Recipe {
                 ", cookTime='" + cookTime + '\'' +
                 ", instructions='" + instructions + '\'' +
                 ", sourceUrl='" + sourceUrl + '\'' +
-                ", ingredients=" + ingredients +
+                ", recipeIngredients=" + recipeIngredients +
                 '}';
     }
 }

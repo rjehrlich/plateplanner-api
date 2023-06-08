@@ -2,27 +2,31 @@ package com.plateplanner.api.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
 @Table(name = "recipe_ingredient")
-@IdClass(RecipeIngredientId.class)
 public class RecipeIngredient implements Serializable {
+
+    /**
+     * the composite primary key
+     */
+    @EmbeddedId
+    private RecipeIngredientId id;
 
     /**
      * Combine @Id annotation with @ManyToOne and @JoinColumn to manage the
      * foreign key mappings for Recipe and Ingredient entities
      */
-    @Id
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "recipe_id")
-    public Recipe recipe;
+    @MapsId("recipeId") // Maps to the recipe field in RecipeIngredientId
+    private Recipe recipe;
 
-    @Id
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ingredient_id")
-    public Ingredient ingredient;
+    @MapsId("ingredientId") // Maps to the ingredient field in RecipeIngredientId
+    private Ingredient ingredient;
 
     @Column
     private String quantity;
@@ -30,7 +34,9 @@ public class RecipeIngredient implements Serializable {
     public RecipeIngredient() {
     }
 
+
     public RecipeIngredient(Recipe recipe, Ingredient ingredient, String quantity) {
+        this.id = new RecipeIngredientId(recipe.getId(), ingredient.getId());
         this.recipe = recipe;
         this.ingredient = ingredient;
         this.quantity = quantity;
@@ -63,17 +69,11 @@ public class RecipeIngredient implements Serializable {
 
     /**
      * hashCode method overrides the default method in the superclass
-     * @return an integer representing hash code of this object
+     * @return a hash code of object calculating composite key values
      */
     @Override
     public int hashCode() {
-        // if the recipe attribute is not null
-            // use hashCode method to calculate the hashCode, else result is 0
-        int result = recipe != null ? recipe.hashCode() : 0;
-
-        //combine the hash code of recipe with the hash code of ingredient using 31 as a prime number
-        result = 31 * result + (ingredient != null ? ingredient.hashCode() : 0);
-        return result;
+        return Objects.hash(recipe, ingredient);
     }
 
     /**
@@ -94,20 +94,26 @@ public class RecipeIngredient implements Serializable {
         // cast obj to the RecipeIngredient class so attributes can be compared
         RecipeIngredient that = (RecipeIngredient) obj;
 
-        // compare recipe attribute of object with recipe attribute of obj(that)
-        if (!Objects.equals(recipe, that.recipe)) return false;
+        // // compare recipe/ingredient attribute of object with recipe/ingredient attribute of obj(that)
+        return Objects.equals(recipe, that.recipe) && Objects.equals(ingredient, that.ingredient);
+    }
 
-        // // compare ingredient attribute of object with ingredient attribute of obj(that)
-        return Objects.equals(ingredient, that.ingredient);
+
+    public RecipeIngredientId getId() {
+        return id;
+    }
+
+    public void setId(RecipeIngredientId id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
         return "RecipeIngredient{" +
-                "recipe=" + recipe +
+                "id=" + id +
+                ", recipe=" + recipe +
                 ", ingredient=" + ingredient +
                 ", quantity='" + quantity + '\'' +
                 '}';
     }
-
 }

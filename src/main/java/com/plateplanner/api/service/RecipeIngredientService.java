@@ -9,6 +9,7 @@ import com.plateplanner.api.repository.RecipeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +40,12 @@ public class RecipeIngredientService {
         if (recipe.isEmpty()) {
             throw new InformationNotFoundException("Recipe with ID " + recipeId + " not found");
         } else {
-            return recipe.get().getIngredients();
+            List<RecipeIngredient> recipeIngredients = recipe.get().getRecipeIngredients();
+            List<Ingredient> ingredients = new ArrayList<>();
+            for (RecipeIngredient recipeIngredient : recipeIngredients) {
+                ingredients.add(recipeIngredient.getIngredient());
+            }
+            return ingredients;
         }
     }
 

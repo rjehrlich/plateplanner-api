@@ -77,6 +77,9 @@ public class RecipeDataLoader implements CommandLineRunner {
 //            Recipe recipe4 = new Recipe();
 //            Recipe recipe5 = new Recipe();
 
+            //save the recipes
+            recipeRepo.saveAll(Arrays.asList(recipe1, recipe2, recipe3));
+
             // Create recipe-ingredient associations
                 // recipe1 associations
             RecipeIngredient recipeIngredient1 = new RecipeIngredient(recipe1, ingredient1, "3lbs");
@@ -121,7 +124,6 @@ public class RecipeDataLoader implements CommandLineRunner {
             RecipeIngredient recipeIngredient36 = new RecipeIngredient(recipe3, ingredient26, "2");
 
             // Save the recipes and recipe-ingredient associations
-            recipeRepo.saveAll(Arrays.asList(recipe1, recipe2, recipe3));
             recipeIngredientRepo.saveAll(Arrays.asList(
                     recipeIngredient1, recipeIngredient2, recipeIngredient3,
                     recipeIngredient4, recipeIngredient5, recipeIngredient6,

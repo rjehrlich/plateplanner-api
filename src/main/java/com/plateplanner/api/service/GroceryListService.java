@@ -3,6 +3,7 @@ package com.plateplanner.api.service;
 import com.plateplanner.api.model.GroceryList;
 import com.plateplanner.api.model.Ingredient;
 import com.plateplanner.api.model.Recipe;
+import com.plateplanner.api.model.RecipeIngredient;
 import com.plateplanner.api.repository.GroceryListRepo;
 import com.plateplanner.api.repository.RecipeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +38,16 @@ public class GroceryListService {
         List<Recipe> recipes = recipeRepo.findAllById(recipeIds);
 
         // Extract the ingredients from the selected recipes
-        List<Ingredient> ingredients = new ArrayList<>();
+        List<RecipeIngredient> recipeIngredients = new ArrayList<>();
         for (Recipe recipe : recipes) {
-            List<Ingredient> recipeIngredients = recipe.getIngredients();
-            ingredients.addAll(recipeIngredients);
+            List<RecipeIngredient> ingredients = recipe.getRecipeIngredients();
+            recipeIngredients.addAll(ingredients);
+        }
+
+        // Extract the ingredients from the recipe ingredients
+        List<Ingredient> ingredients = new ArrayList<>();
+        for (RecipeIngredient recipeIngredient : recipeIngredients) {
+            ingredients.add(recipeIngredient.getIngredient());
         }
 
         // Create the grocery list with the aggregated ingredients
