@@ -44,6 +44,11 @@ public class RecipeIngredientController {
         return recipeIngredientService.getRecipeIngredient(recipeId, ingredientId);
     }
 
+    /**
+     * getIngredientsForRecipes method provides an endpoint that will take in:
+     * @param recipeIds list
+     * @return ingredients that matches the given recipe ids
+     */
     @GetMapping("/{recipeIds}/ingredients")
     public List<RecipeIngredient> getIngredientsForRecipes(@PathVariable List<Long> recipeIds) {
         return recipeIngredientService.getIngredientsForRecipes(recipeIds);

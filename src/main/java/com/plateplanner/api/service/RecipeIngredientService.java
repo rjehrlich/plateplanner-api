@@ -76,7 +76,6 @@ public class RecipeIngredientService {
     /**
      * getIngredientsForRecipes method will take in a list of recipe IDs and return
      * the aggregated ingredients from those specific recipes.
-     *
      * @param recipeIds the list of recipe IDs to fetch ingredients for
      * @return the combined list of ingredients from the specified recipes
      */
