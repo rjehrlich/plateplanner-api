@@ -61,7 +61,9 @@ I planned out the project using the following areas as main focus:
 [Project Plan Link](https://github.com/users/rjehrlich/projects/5)
 
 ## Hurdles
-One of 
+* One big hurdle I had was when I first set up my entity relationships I was getting several server log errors about overriding hashcode() and equals() methods. This was mostly due to the fact that my relationships between entities is using composite keys as mappings.
+  * I found [this article](https://thorben-janssen.com/ultimate-guide-to-implementing-equals-and-hashcode-with-hibernate/) on how to implement these methods which helped with my development process
+* Due to my entity relationship setup I also had a REALLY tough time getting my endpoints to display the proper information I wanted. I ended up having to reconfigure them about 2 times
 
 ## Installation Instructions/ Dependencies
 
@@ -150,3 +152,5 @@ In order to successfully replicate/ run Cucumber Tests you will need to add this
     * For spending what seemed like hours with me on installation issues in Angular and advice on project logic.
 * **Suresh S (GA Instructor)**: https://github.com/sureshmelvinsigera/
     * For also helping throughout our learning journey and being patient debugging issues with us!
+* **Dhrubo C (GA Instructor)**: https://git.generalassemb.ly/dhrubo57
+  * For helping through some hard Cucumber Test case logic
