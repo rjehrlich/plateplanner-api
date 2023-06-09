@@ -38,7 +38,7 @@ We planned out the following in each of the four areas:
 * As a user, I want to receive email notifications about my order status and shipping updates.
 
 ### ERD Diagram
-![ERD Diagram](images/Database_ERD.png)
+![ERD Diagram](images/plannerERD.png)
 
 ### Endpoint Mappings
 
@@ -60,14 +60,12 @@ We planned out the following in each of the four areas:
 
 --------
 ### Kanban Project Plan
-![kanban board](images/RC_Store_ProjectPlan.png)
+![kanban board](/images/projectplan.png)
 
-[Project Plan Link](https://github.com/users/rjehrlich/projects/4)
+[Project Plan Link](https://github.com/users/rjehrlich/projects/5)
 
 ## Hurdles
-One of our biggest hurdles was setting up JWT Token security w/ the Cucumber Test methods. We could not figure out how to authenticate a user to run the tests, but were able to knowledge transfer with our classmates. They helped us successfully debug and refactor our tests to fix the errors we were having.
-
-We feel we've successfully completed the project to the requirements, so we don't have any unsolved problems. However, we did add some future considers for enhancements later on.
+One of 
 
 ## Installation Instructions/ Dependencies
 
@@ -141,30 +139,6 @@ In order to use this codebase you will need to make sure you have the following 
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
         <version>3.0.5</version>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-security</artifactId>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
-    <dependency>
-        <groupId>io.jsonwebtoken</groupId>
-        <artifactId>jjwt-api</artifactId>
-        <version>0.11.5</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl -->
-    <dependency>
-        <groupId>io.jsonwebtoken</groupId>
-        <artifactId>jjwt-impl</artifactId>
-        <version>0.11.5</version>
-        <scope>runtime</scope>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson -->
-    <dependency>
-        <groupId>io.jsonwebtoken</groupId>
-        <artifactId>jjwt-jackson</artifactId>
-        <version>0.11.5</version>
-        <scope>runtime</scope>
     </dependency>
 </dependencies>
 ```
