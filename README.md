@@ -10,7 +10,7 @@
 
 ---
 ## Project Description
-Plate Planner API aims to provide data 
+Plate Planner API aims to provide data on delicious recipes that are fun and mostly easy to prepare. The idea grew from my love for food and cooking and ultimately wanting to take the guesswork out of creating a grocery list. The aim is to use this as a basis/ plan for future consideration of a full application.
 
 ## Tools & Technologies
 - ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
@@ -24,18 +24,19 @@ Plate Planner API aims to provide data
 - [Wireframe Tool](https://www.figma.com/)
 
 ## Project Planning Process
-As a group we came together and decided our overall project process would consist of four important pieces. Planning our project in these 4 steps helped us keep on track of our to-do's and requirements.
+Each day I would start by looking at my Kanban board, noting what I completed the day before, review what I have planned for the current day, and then prioritized breaking bigger tasks into smaller pieces.
 
-We planned out the following in each of the four areas:
+I planned out the project using the following areas as main focus:
 
 ### User Stories
-* As a User, I want to create a profile so that I can save my personal information and preferences
-* As a User, I want to be able to view and edit my profile information, including my name, email address, and password.
-* As a User, I want to be able to view and save products in my profile.
-* As a User, I want to be able to delete out of season products.
+* As a User, I want to be able to see all recipes available.
+* As a User, I want to select only certain recipes from a list, so that I can use them in my grocery planning
+* As a User, I want to be able to have a grocery list that is based on my recipe selections.
+
 #### Nice to have in the future:
-* As a user, I want to be able to add products to my cart and checkout securely.
-* As a user, I want to receive email notifications about my order status and shipping updates.
+* As a User, I want to be able to store my grocery lists in my account, so I can look at them again later
+* As a User, I want to create a profile so that I can save recipes I enjoyed making.
+* As a User, I want to be able to add my own recipes and save them to refere to later.
 
 ### ERD Diagram
 ![ERD Diagram](images/plannerERD.png)
@@ -43,15 +44,15 @@ We planned out the following in each of the four areas:
 ### Endpoint Mappings
 
 #### Recipe, Ingredient, and RecipeIngredient Controllers
-| HTTP Methods 	| Full URL                                                            	|                       URL                      	|                Functionally                	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
-|--------------	|---------------------------------------------------------------------	|:----------------------------------------------:	|:------------------------------------------:	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|
-| GET          	| http://localhost:8080/api/recipes                                   	| /recipes                                       	| Get all recipes                            	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
-| GET          	| http://localhost:8080/recipes/{recipeId}                            	| /recipes/{recipeId}                            	| Get a recipe by id                         	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
-| GET          	| http://localhost:8080/ingredients                                   	| /ingredients                                   	| Get all ingredients                        	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
-| GET          	| http://localhost:8080/ingredients/{ingredientId}                    	| /ingredients/{ingredientId}                    	| Get an ingredient by id                    	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
-| GET          	| http://localhost:8080/recipes/{recipeId}/ingredients                	| /recipes/{recipeId}/ingredients                	| Get all ingredients for a recipe by id     	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
-| GET          	| http://localhost:8080/recipes/{recipeId}/ingredients/{ingredientId} 	| /recipes/{recipeId}/ingredients/{ingredientId} 	| Get an ingredient by id for a recipe by id 	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
-| GET          	| http://localhost:8080/grocery-lists                                 	| /grocery-lists                                 	| Get grocerylist from recipes               	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
+| HTTP Methods 	| Full URL                                                            	|                       URL                      	|                Functionally                	|
+|--------------	|---------------------------------------------------------------------	|:----------------------------------------------:	|:------------------------------------------:	|
+| GET          	| http://localhost:8080/api/recipes                                   	| /recipes                                       	| Get all recipes                            	|
+| GET          	| http://localhost:8080/recipes/{recipeId}                            	| /recipes/{recipeId}                            	| Get a recipe by id                         	|
+| GET          	| http://localhost:8080/ingredients                                   	| /ingredients                                   	| Get all ingredients                        	|
+| GET          	| http://localhost:8080/ingredients/{ingredientId}                    	| /ingredients/{ingredientId}                    	| Get an ingredient by id                    	|
+| GET          	| http://localhost:8080/recipes/{recipeId}/ingredients                	| /recipes/{recipeId}/ingredients                	| Get all ingredients for a recipe by id     	|
+| GET          	| http://localhost:8080/recipes/{recipeId}/ingredients/{ingredientId} 	| /recipes/{recipeId}/ingredients/{ingredientId} 	| Get an ingredient by id for a recipe by id 	|
+| GET          	| http://localhost:8080/grocery-lists                                 	| /grocery-lists                                 	| Get grocerylist from recipes               	|
 
 --------
 ### Kanban Project Plan
@@ -145,9 +146,7 @@ In order to successfully replicate/ run Cucumber Tests you will need to add this
 * Referred back to Java Spring Boot Lesson for explanations: https://git.generalassemb.ly/sureshmelvinsigera/Java-Spring-Boot-lecture/tree/spring-2-7-8
 * [JAVA API](https://docs.oracle.com/en/java/javase/17/docs/api/index.html)
 * [Spring Framework Documentation](https://docs.spring.io/spring-framework/docs/current/reference/html/)
-* **Team C**: Lorena, Maksym, and Edgar
-    * For helping us out with Spring Security and JWT testing.
-* **Team F**: Trevor, Tobe, and Dominique
-    * For helping with git branches and general questions we had throughout implementation.
-* **Suresh**
-    * Our instructor for helping us throughout our learning journey and being patient debugging issues with us!
+* **Leo R (GA Instructor)**: https://github.com/LRodriguez92
+    * For spending what seemed like hours with me on installation issues in Angular and advice on project logic.
+* **Suresh S (GA Instructor)**: https://github.com/sureshmelvinsigera/
+    * For also helping throughout our learning journey and being patient debugging issues with us!
