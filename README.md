@@ -42,21 +42,16 @@ We planned out the following in each of the four areas:
 
 ### Endpoint Mappings
 
-#### Product Controller
-| HTTP Methods 	| Full URL                             	|           URL          	|     Functionally     	|
-|--------------	|--------------------------------------	|:----------------------:	|:--------------------:	|
-| GET          	| http://localhost:8080/api/products/  	| /products/             	| List of all products 	|
-| GET          	| http://localhost:8080/api/products/1 	| /products/{productId}/ 	| One product by ID    	|
-| POST         	| http://localhost:8080/api/products/  	| /products/             	| Create new product   	|
-| PUT          	| http://localhost:8080/api/products/  	| /products/{productId}/ 	| Save products        	|
-| DELETE       	| http://localhost:8080/api/products/  	| /products/{productId}/ 	| Remove products      	|
-
-#### User Controller
-
-| HTTP Methods 	| Full URL                                  	|          URL         	|        Functionally       	|
-|--------------	|-------------------------------------------	|:--------------------:	|:-------------------------:	|
-| POST         	| http://localhost:8080/auth/users/login    	| /auth/users/login    	| Logs user in              	|
-| POST         	| http://localhost:8080/auth/users/register 	| /auth/users/register 	| Registers/ creates a user 	|
+#### Recipe, Ingredient, and RecipeIngredient Controllers
+| HTTP Methods 	| Full URL                                                            	|                       URL                      	|                Functionally                	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
+|--------------	|---------------------------------------------------------------------	|:----------------------------------------------:	|:------------------------------------------:	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|
+| GET          	| http://localhost:8080/api/recipes                                   	| /recipes                                       	| Get all recipes                            	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
+| GET          	| http://localhost:8080/recipes/{recipeId}                            	| /recipes/{recipeId}                            	| Get a recipe by id                         	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
+| GET          	| http://localhost:8080/ingredients                                   	| /ingredients                                   	| Get all ingredients                        	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
+| GET          	| http://localhost:8080/ingredients/{ingredientId}                    	| /ingredients/{ingredientId}                    	| Get an ingredient by id                    	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
+| GET          	| http://localhost:8080/recipes/{recipeId}/ingredients                	| /recipes/{recipeId}/ingredients                	| Get all ingredients for a recipe by id     	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
+| GET          	| http://localhost:8080/recipes/{recipeId}/ingredients/{ingredientId} 	| /recipes/{recipeId}/ingredients/{ingredientId} 	| Get an ingredient by id for a recipe by id 	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
+| GET          	| http://localhost:8080/grocery-lists                                 	| /grocery-lists                                 	| Get grocerylist from recipes               	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|   	|
 
 --------
 ### Kanban Project Plan
