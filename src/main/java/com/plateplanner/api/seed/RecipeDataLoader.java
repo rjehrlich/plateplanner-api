@@ -61,6 +61,9 @@ public class RecipeDataLoader implements CommandLineRunner {
             Ingredient ingredient26 = new Ingredient(26L, "Avocado(s)");
             Ingredient ingredient27 = new Ingredient(27L, "Fish: Ahi Tuna Steaks");
             Ingredient ingredient28 = new Ingredient(28L, "Ginger");
+            Ingredient ingredient29 = new Ingredient(29L, "Elbow Pasta");
+            Ingredient ingredient30 = new Ingredient(30L, "Medium Sharp Cheddar Cheese");
+            Ingredient ingredient31 = new Ingredient(31L, "Gruyere Cheese");
 
 
             // Save the ingredients
@@ -68,17 +71,18 @@ public class RecipeDataLoader implements CommandLineRunner {
                     ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6,
                     ingredient7, ingredient8, ingredient9, ingredient10, ingredient11, ingredient12, ingredient13,
                     ingredient14, ingredient15, ingredient16, ingredient17, ingredient18, ingredient19, ingredient20,
-                    ingredient21, ingredient22, ingredient23, ingredient24, ingredient25, ingredient26, ingredient27, ingredient28));
+                    ingredient21, ingredient22, ingredient23, ingredient24, ingredient25, ingredient26, ingredient27,
+                    ingredient28, ingredient29, ingredient30, ingredient31));
 
             // Create Recipes
             Recipe recipe1 = new Recipe(1L,"https://www.pressurecookrecipes.com/wp-content/uploads/2021/01/instant-pot-birria.webp", "Instant Pot Birria", "Cut cooktime by more than half making your meat in the Instant Pot. You can turn this into delicious tacos, meat for rice bowls, or a soup!", "30min", "1hr", "", "https://www.pressurecookrecipes.com/instant-pot-birria/");
             Recipe recipe2 = new Recipe(2L, "https://i0.wp.com/scruffandsteph.com/wp-content/uploads/2019/05/Vietnamese-Beef-Noodle-Bowl-2-1.jpg?w=1500&ssl=1", "Beef Vermicelli(Bun Bo Xao)", "A refreshing, healthy, and easy to make meal that will not disappoint.", "30min", "5min", "", "https://scruffandsteph.com/2019/05/08/vietnamese-beef-noodle-bowls/");
             Recipe recipe3 = new Recipe(3L, "https://fitfoodiefinds.com/wp-content/uploads/2019/07/poke-bowl-14.jpg", "Ahi Tuna Bowl", "A delicious and nutritious bowl that is so easy to make it will likely be in your weekly rotation.", "45min", "30min", "", "https://fitfoodiefinds.com/seared-ahi-tuna-poke-bowl/");
-//            Recipe recipe4 = new Recipe();
-//            Recipe recipe5 = new Recipe();
+            Recipe recipe4 = new Recipe(4L, "https://images.pexels.com/photos/9397238/pexels-photo-9397238.jpeg", "Baked Mac & Cheese", "The most comforting cheat meal out there, get ready for cheesy goodness.", "20mins", "15mins", "", "https://www.thechunkychef.com/family-favorite-baked-mac-and-cheese/");
+            Recipe recipe5 = new Recipe(5L, "https://www.lecremedelacrumb.com/wp-content/uploads/2017/04/flank-steak-chimichurri-sauce-107.jpg", "Steak with Chimichurri", "This easy marinated steak with savory flavors can be paired with endless sides!", "15mins", "20mins", "", "https://www.lecremedelacrumb.com/flank-steak-with-chimichurri-sauce/");
 
             //save the recipes
-            recipeRepo.saveAll(Arrays.asList(recipe1, recipe2, recipe3));
+            recipeRepo.saveAll(Arrays.asList(recipe1, recipe2, recipe3, recipe4, recipe5));
 
             // Create recipe-ingredient associations
                 // recipe1 associations
@@ -123,6 +127,20 @@ public class RecipeDataLoader implements CommandLineRunner {
             RecipeIngredient recipeIngredient35 = new RecipeIngredient(recipe3, ingredient15, "2tbsp");
             RecipeIngredient recipeIngredient36 = new RecipeIngredient(recipe3, ingredient26, "2");
 
+            // recipe4 associations
+            RecipeIngredient recipeIngredient37 = new RecipeIngredient(recipe4, ingredient7, "4");
+            RecipeIngredient recipeIngredient38 = new RecipeIngredient(recipe4, ingredient29, "1lb");
+            RecipeIngredient recipeIngredient39 = new RecipeIngredient(recipe4, ingredient30, "4c");
+            RecipeIngredient recipeIngredient40 = new RecipeIngredient(recipe4, ingredient31, "2c");
+
+            // recipe5 associations
+            RecipeIngredient recipeIngredient41 = new RecipeIngredient(recipe5, ingredient20, "1.5lbs");
+            RecipeIngredient recipeIngredient42 = new RecipeIngredient(recipe5, ingredient18, "1");
+            RecipeIngredient recipeIngredient43 = new RecipeIngredient(recipe5, ingredient19, "1/2c");
+            RecipeIngredient recipeIngredient44 = new RecipeIngredient(recipe5, ingredient6, "1/2");
+            RecipeIngredient recipeIngredient45 = new RecipeIngredient(recipe5, ingredient7, "1");
+            RecipeIngredient recipeIngredient46 = new RecipeIngredient(recipe5, ingredient15, "2tbsp");
+
             // Save the recipes and recipe-ingredient associations
             recipeIngredientRepo.saveAll(Arrays.asList(
                     recipeIngredient1, recipeIngredient2, recipeIngredient3,
@@ -135,7 +153,9 @@ public class RecipeDataLoader implements CommandLineRunner {
                     recipeIngredient23, recipeIngredient24, recipeIngredient25, recipeIngredient26,
                     recipeIngredient27, recipeIngredient28, recipeIngredient29, recipeIngredient30,
                     recipeIngredient31, recipeIngredient32, recipeIngredient33, recipeIngredient34,
-                    recipeIngredient35, recipeIngredient36));
+                    recipeIngredient35, recipeIngredient36, recipeIngredient37, recipeIngredient38,
+                    recipeIngredient39, recipeIngredient40, recipeIngredient41, recipeIngredient42,
+                    recipeIngredient43, recipeIngredient44, recipeIngredient45, recipeIngredient46));
         }
     }
 }
