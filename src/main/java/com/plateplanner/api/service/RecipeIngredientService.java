@@ -80,27 +80,6 @@ public class RecipeIngredientService {
      * @param recipeIds the list of recipe IDs to fetch ingredients for
      * @return the combined list of ingredients from the specified recipes
      */
-//    public List<Ingredient> getIngredientsForRecipes(List<Long> recipeIds) {
-//        List<Ingredient> ingredients = new ArrayList<>();
-//
-//        for (Long recipeId : recipeIds) {
-//            Optional<Recipe> recipe = recipeRepo.findById(recipeId);
-//            if (recipe.isPresent()) {
-//                List<RecipeIngredient> recipeIngredients = recipe.get().getRecipeIngredients();
-//                for (RecipeIngredient recipeIngredient : recipeIngredients) {
-//                    Ingredient ingredient = recipeIngredient.getIngredient();
-//                    if (!ingredients.contains(ingredient)) {
-//                        ingredients.add(ingredient);
-//
-//                    }
-//                }
-//            } else {
-//                throw new InformationNotFoundException("Recipe with ID " + recipeId + " not found");
-//            }
-//        }
-//        return ingredients;
-//    }
-
     public List<RecipeIngredient> getIngredientsForRecipes(List<Long> recipeIds) {
         List<RecipeIngredient> recipeIngredients = new ArrayList<>();
 
